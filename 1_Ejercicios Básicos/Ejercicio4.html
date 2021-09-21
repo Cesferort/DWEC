@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Sumatorios</h1>
+    </header>
+    <script>
+        var texto="";
+        var n1=0;
+        for(var contN=1; contN<=100; contN++)
+        {
+            var resultado = contN+n1;
+            texto+=resultado+", ";
+
+            if(contN%10==0)
+                texto += "<br>";
+
+            n1=resultado;
+        }
+        document.write("<p>"+texto+"</p>");
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="app.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onLoad="window.defaultStatus='Aquí puedes poner cualquier texto.'; return true">
+    <script>
+        // TODO Descomentar 
+        // window.open('https://www.google.es','_blank').focus();
+    </script>
+    <section>
+        <div id="screen" class="caja">
+            <strong><u>Objeto screen</u></strong>
+            <script>
+                document.write("<p>La resolución de la pantalla es de "+width+"x"+height+"</p>");
+            </script>
+        </div>
+
+        <div id="navigation" class="caja">
+            <strong><u>Objeto navigator</u></strong>
+            <script>
+                let txt = "<p>";
+                txt+="El nombre del navegador que usas es: <strong>"+detectBrowser()+"</strong><br>";
+                txt+="Usas el siguiente sistema operativo: <strong>"+detectOS()+"</strong><br>"; 
+                txt+="La versión del navegador que usas es: <strong>"+detectBrowserVersion()+"</strong>"; 
+                txt+="</p>";
+                document.write(txt);
+            </script>
+        </div>
+
+        <div id="document" class="caja">
+            <strong><u>Objeto document</u></strong>
+            <script>
+                txt = "<p>";
+                txt+="La URL del documento es: <strong>";
+                txt+=detectURL();   
+                txt+="</strong></p>";
+                document.write(txt);
+            </script>
+        </div>
+
+        <div id="location" class="caja">
+            <strong><u>Objeto location</u></strong>
+            <script>
+                txt = "<p>";
+                txt+="El protocolo usado para acceder a esta página ha sido: <strong>";
+                txt+=detectLocation();
+                txt+="</strong></p>";
+                document.write(txt);
+            </script>
+        </div>
+        <script>aniadirEstilo()</script>
+    </section>
+</body>
+</html>

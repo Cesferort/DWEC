@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function listenerColor(color)
+        {
+            document.body.style.backgroundColor = color;
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <button type="button" onClick="listenerColor(this.id)" id="red">Rojo</button>
+        <button type="button" onClick="listenerColor(this.id)" id="green">Verde</button>
+        <button type="button" onClick="listenerColor(this.id)" id="yellow">Amarillo</button>
+        <button type="button" onClick="listenerColor(this.id)" id="purple">Morado</button>
+        <button type="button" onClick="listenerColor(this.id)" id="pink">Rosa</button>
+    </form>
+</body>
+</html>

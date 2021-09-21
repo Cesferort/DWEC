@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Números pares de 25 en 25</h1>
+    </header>
+    <script>
+        let check=true;
+        let n=1;
+        let contPares=0,contPares_cooldown=1;
+        let filasCargadas=1;
+
+        let textNode;
+        
+        let pId = 1;
+        let pIdTxt = "p_"+pId;
+        document.write('<p id="'+pIdTxt+'"></p>');
+        do
+        {
+            if(n%2==0)
+            {
+                textNode = document.createTextNode(n + ", ");
+                document.getElementById(pIdTxt).appendChild(textNode);
+                contPares++;
+            }
+
+            if(contPares%25==0 && contPares_cooldown<=0)
+            {        
+                pId++;       
+                pIdTxt = "p_"+pId;
+                document.write('<p id="'+pIdTxt+'"></p>');
+                
+
+                if(confirm("Has cargado "+filasCargadas+" filas.\n¿Desea continuar?"))
+                {
+                    check = true;
+                    contPares_cooldown=2;
+                    filasCargadas++;
+                }
+                else 
+                    check = false;
+            }
+            n++;
+            contPares_cooldown--;
+        }
+        while(check);
+        alert("Aplicación finalizada.");
+    </script>
+</body>
+</html>

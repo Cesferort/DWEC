@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Factorial</h1>
+    </header>
+    <script>
+        let primeraVez = true;
+        let n;
+
+        do
+        {
+            if(primeraVez == true)
+            {
+                n = parseInt(prompt("Introduce el valor numérico de N:"), 10);
+                primeraVez = false;
+            }
+            else
+                n = parseInt(prompt("El valor debe ser positivo y numérico, vuelve a intentarlo.\nIntroduce el valor numérico de N:"), 10);
+        }
+        while(n<0 || Number.isNaN(n));
+        
+        let resultado = n;
+        for(let contN=n-1;contN>0;contN--)
+            resultado *= contN;
+        
+        alert("El resultado del factorial es: "+resultado);
+    </script>
+</body>
+</html>
