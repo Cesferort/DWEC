@@ -12,7 +12,10 @@
         <h1>MANEJANDO VENTANAS</h1>
     </header>
     <form>
-        <input type="button" value="Entrar" onClick="abrirVentanas()"></input>
+        <label for="txtNomApe">Nombre y Apellidos:</label>
+        <input type="text" id="txtNomApe"></input>
+
+        <input type="button" value="Entrar" onClick="comprobarForm(txtNomApe.value)"></input>
     </form>
 </body>
 </html>
