@@ -61,9 +61,16 @@ function calcResolver(eleTxtCalc, value)
 				else
 					nPosterior=(nPosterior*10)+parseInt(caracter);
 		}
+		if(nAnterior==null)
+			break;
 	}
-	nAnterior=calcMiniOperacion(signo,nAnterior,nPosterior);
-	eleTxtCalc.value=nAnterior;
+	if(nAnterior==null || calcMiniOperacion(signo,nAnterior,nPosterior)==null)
+		eleTxtCalc.value='IMPOSIBLE';
+	else
+	{
+		nAnterior=calcMiniOperacion(signo,nAnterior,nPosterior);
+		eleTxtCalc.value=nAnterior;
+	}
 	calculoTerminado=true;
 }
 
@@ -84,7 +91,7 @@ function calcMiniOperacion(signo,nAnterior,nPosterior)
 			break;
 		case '/': 
 			if(nPosterior==0)
-				nAnterior='IMPOSIBLE';
+				nAnterior=null;
 			else
 				nAnterior/=nPosterior; 
 			break;
@@ -95,10 +102,16 @@ function calcMiniOperacion(signo,nAnterior,nPosterior)
 </head>
 
 <style>
+body
+{
+	text-align:center;
+}
 table
 {
 	background-color: lightblue;
 	padding:10px;
+	margin:auto;
+	border: 5px solid black;
 }
 input[type=button]
 {
