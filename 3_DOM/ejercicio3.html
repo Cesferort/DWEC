@@ -2,17 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Ejercicio 13 - DOM básico y atributos XHTML</title>
+<title>Ejercicio 13 - DOM bÃ¡sico y atributos XHTML</title>
 
 <script type="text/javascript">
-function anade() {
+function anade()
+{
+	let eleUlLista = document.getElementById('lista');
 
+	let txt='Nuevo elemento';
+	let txtNode=document.createTextNode(txt);
+
+	let liNuevoItem = document.createElement('li');
+	liNuevoItem.appendChild(txtNode);
+	eleUlLista.appendChild(liNuevoItem);
 }
 </script>
 </head>
 
 <body>
-
 <ul id="lista">
 	<li>Lorem ipsum dolor sit amet</li>
 	<li>Consectetuer adipiscing elit</li>
@@ -21,7 +28,7 @@ function anade() {
 	<li>Maecenas nisl arcu</li>
 </ul>
 
-<input type="button" value="Añadir elemento" onclick="anade();">
+<input type="button" value="AÃ±adir elemento" onclick="anade();">
 
 </body>
 </html>

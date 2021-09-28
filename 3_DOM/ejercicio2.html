@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Ejercicio 12 - DOM básico y atributos XHTML</title>
+<title>Ejercicio 12 - DOM bï¿½sico y atributos XHTML</title>
 
 <style type="text/css">
 .oculto { display: none; }
@@ -10,8 +10,13 @@
 </style>
 
 <script type="text/javascript">
-function muestra() {
+function muestra() 
+{
+    for(let elementHtml of document.getElementsByClassName('oculto'))
+        elementHtml.setAttribute("style", "display: inline;");
 
+    let aEnlace = document.getElementById('enlace');
+    aEnlace.setAttribute("style", "display: none;");
 }
 </script>
 </head>

@@ -2,18 +2,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Ejercicio 11 - DOM b�sico</title>
-
+<title>Ejercicio 11 - DOM básico</title>
 <script type="text/javascript">
-window.onload = function() {
+window.onload = function() 
+{
+	let body=document.querySelector('body');
+	let textNode;
+	let txt;
+
 	// Numero de enlaces de la pagina
+	let listaAnchors = document.getElementsByTagName("a");
+	txt='Hay un total de '+listaAnchors.length+' enlaces en la página.';
+	
+	let pNumEnlaces = document.createElement('p');  
+	textNode=document.createTextNode(txt);  
+	pNumEnlaces.appendChild(textNode);
+	body.appendChild(pNumEnlaces);
 
 	// Direccion del penultimo enlace
+	let penulTimoAnchor=listaAnchors[listaAnchors.length-2];
+	txt='La dirección del penúltimo enlace es: '+penulTimoAnchor.getAttribute('href');
+	
+	let pDirPenEnlace = document.createElement('p');  
+	textNode=document.createTextNode(txt);  
+	pDirPenEnlace.appendChild(textNode);
+	body.appendChild(pDirPenEnlace);
 
 	// Numero de enlaces que apuntan a http://prueba
+	let contPruebas=0;
+	for(let i=0;i<listaAnchors.length;i++)
+	{
+		if(listaAnchors[i].href=='http://prueba/')
+			contPruebas++;
+	}
+	txt='El número de enlaces que apuntan a http://prueba es de: '+contPruebas;
+	
+	let pNumEnlacesPrueba = document.createElement('p');  
+	textNode=document.createTextNode(txt);  
+	pNumEnlacesPrueba.appendChild(textNode);
+	body.appendChild(pNumEnlacesPrueba);
 
-	// Numero de enlaces del tercer p�rrafo
-
+	// Numero de enlaces del tercer párrafo
+	let listaP = document.getElementsByTagName("p");
+	let tercerP = listaP[3-1];
+	let listaAnchors_TercerP=tercerP.getElementsByTagName("a");
+	txt='El número de enlaces del tercer párrafor es de: '+listaAnchors_TercerP.length;
+	
+	let pNumEnlacesTercerP = document.createElement('p');  
+	textNode=document.createTextNode(txt);  
+	pNumEnlacesTercerP.appendChild(textNode);
+	body.appendChild(pNumEnlacesTercerP);
 }
 </script>
 </head>
@@ -24,5 +62,6 @@ window.onload = function() {
 <p>Aenean at nisl. Maecenas egestas dapibus odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin consequat auctor diam. <a href="http://prueba">Ut bibendum blandit est</a>. Curabitur vestibulum. Nunc malesuada porttitor sapien. Aenean a lacus et metus venenatis porta. Suspendisse cursus, sem non dapibus tincidunt, lorem magna porttitor felis, id sodales dolor dolor sed urna. Sed rutrum nulla vitae tellus. Sed quis eros nec lectus tempor lacinia. Aliquam nec lectus nec neque aliquet dictum. Etiam <a href="http://prueba3">consequat sem quis massa</a>. Donec aliquam euismod diam. In magna massa, mattis id, pellentesque sit amet, porta sit amet, lectus. Curabitur posuere. Aliquam in elit. Fusce condimentum, arcu in scelerisque lobortis, ante arcu scelerisque mi, at cursus mi risus sed tellus.</p>
 
 <p>Donec sagittis, nibh nec ullamcorper tristique, pede velit feugiat massa, at sollicitudin justo tellus vitae justo. Vestibulum aliquet, nulla sit amet imperdiet suscipit, nunc erat laoreet est, a <a href="http://prueba">aliquam leo odio sed sem</a>. Quisque eget eros vehicula diam euismod tristique. Ut dui. Donec in metus sed risus laoreet sollicitudin. Proin et nisi non arcu sodales hendrerit. In sem. Cras id augue eu lorem dictum interdum. Donec pretium. Proin <a href="http://prueba4">egestas</a> adipiscing ligula. Duis iaculis laoreet turpis. Mauris mollis est sit amet diam. Curabitur hendrerit, eros quis malesuada tristique, ipsum odio euismod tortor, a vestibulum nisl mi at odio. <a href="http://prueba5">Sed non lectus non est pellentesque</a> auctor.</p>
+
 </body>
 </html>
