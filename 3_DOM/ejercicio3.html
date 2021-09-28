@@ -8,12 +8,8 @@
 function anade()
 {
 	let eleUlLista = document.getElementById('lista');
-
-	let txt='Nuevo elemento';
-	let txtNode=document.createTextNode(txt);
-
 	let liNuevoItem = document.createElement('li');
-	liNuevoItem.appendChild(txtNode);
+	liNuevoItem.innerHTML='Nuevo elemento';
 	eleUlLista.appendChild(liNuevoItem);
 }
 </script>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejercicio 5</title>
+
+<script type="text/javascript">
+let calculoTerminado=false;
+function calc(value)
+{
+	let eleTxtCalc=document.getElementById('txtCalc');
+	if(calculoTerminado==true)
+	{
+		eleTxtCalc.value = '';
+		calculoTerminado=false;
+	}
+	
+	if(value=='=')
+		calcResolver(eleTxtCalc, eleTxtCalc.value);
+	else if(value=='C')
+		eleTxtCalc.value = '';
+	else
+		eleTxtCalc.value += value;
+}
+
+function calcResolver(eleTxtCalc, value)
+{
+	let resultado=0;
+	let nAnterior=0;
+	let nPosterior=0;
+	let signo='+';
+
+	for(let i=0;i<value.length;i++)
+	{
+		let caracter=value[i];
+		switch(caracter)
+		{
+			case '+':
+				nAnterior=calcMiniOperacion(signo,nAnterior,nPosterior);
+				nPosterior=0;
+				signo='+';
+				break;
+			case '-':
+				nAnterior=calcMiniOperacion(signo,nAnterior,nPosterior);
+				nPosterior=0;
+				signo='-';
+				break;
+			case '*':
+				nAnterior=calcMiniOperacion(signo,nAnterior,nPosterior);
+				nPosterior=0;
+				signo='*';
+				break;
+			case '/':
+				nAnterior=calcMiniOperacion(signo,nAnterior,nPosterior);
+				nPosterior=0;
+				signo='/';
+				break;	
+			default:
+				if(nPosterior==0)
+					nPosterior=parseInt(caracter);
+				else
+					nPosterior=(nPosterior*10)+parseInt(caracter);
+		}
+	}
+	nAnterior=calcMiniOperacion(signo,nAnterior,nPosterior);
+	eleTxtCalc.value=nAnterior;
+	calculoTerminado=true;
+}
+
+function calcMiniOperacion(signo,nAnterior,nPosterior)
+{
+	nAnterior=parseInt(nAnterior);
+	nPosterior=parseInt(nPosterior);
+	switch(signo)
+	{
+		case '+':
+			nAnterior+=nPosterior; 
+			break;
+		case '-': 
+			nAnterior-=nPosterior; 
+			break;
+		case '*': 
+			nAnterior*=nPosterior; 
+			break;
+		case '/': 
+			if(nPosterior==0)
+				nAnterior='IMPOSIBLE';
+			else
+				nAnterior/=nPosterior; 
+			break;
+	}
+	return nAnterior;
+}
+</script>
+</head>
+
+<style>
+table
+{
+	background-color: lightblue;
+	padding:10px;
+}
+input[type=button]
+{
+	width:25px;
+	height:25px;
+	margin:5px;
+	padding:5px;
+}
+</style>
+
+<body>
+<h2>
+	CALCULADORA
+</h2>
+<form>
+	<table>
+		<tr>
+			<td colspan=4>
+				<input type="text" name="txtCalc" id="txtCalc" readonly>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="button" value="1" onclick="calc(this.value);"></td>
+			<td><input type="button" value="2" onclick="calc(this.value);"></td>
+			<td><input type="button" value="3" onclick="calc(this.value);"></td>
+			<td><input type="button" value="C" onclick="calc(this.value);"></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="4" onclick="calc(this.value);"></td>
+			<td><input type="button" value="5" onclick="calc(this.value);"></td>
+			<td><input type="button" value="6" onclick="calc(this.value);"></td>
+			<td><input type="button" value="+" onclick="calc(this.value);"></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="7" onclick="calc(this.value);"></td>
+			<td><input type="button" value="8" onclick="calc(this.value);"></td>
+			<td><input type="button" value="9" onclick="calc(this.value);"></td>
+			<td><input type="button" value="-" onclick="calc(this.value);"></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="0" onclick="calc(this.value);"></td>
+			<td><input type="button" value="/" onclick="calc(this.value);"></td>
+			<td><input type="button" value="=" onclick="calc(this.value);"></td>
+			<td><input type="button" value="*" onclick="calc(this.value);"></td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

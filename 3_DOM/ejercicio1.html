@@ -15,8 +15,7 @@ window.onload = function()
 	txt='Hay un total de '+listaAnchors.length+' enlaces en la página.';
 	
 	let pNumEnlaces = document.createElement('p');  
-	textNode=document.createTextNode(txt);  
-	pNumEnlaces.appendChild(textNode);
+	pNumEnlaces.innerHTML=txt;
 	body.appendChild(pNumEnlaces);
 
 	// Direccion del penultimo enlace
@@ -24,8 +23,7 @@ window.onload = function()
 	txt='La dirección del penúltimo enlace es: '+penulTimoAnchor.getAttribute('href');
 	
 	let pDirPenEnlace = document.createElement('p');  
-	textNode=document.createTextNode(txt);  
-	pDirPenEnlace.appendChild(textNode);
+	pDirPenEnlace.innerHTML=txt;
 	body.appendChild(pDirPenEnlace);
 
 	// Numero de enlaces que apuntan a http://prueba
@@ -38,8 +36,7 @@ window.onload = function()
 	txt='El número de enlaces que apuntan a http://prueba es de: '+contPruebas;
 	
 	let pNumEnlacesPrueba = document.createElement('p');  
-	textNode=document.createTextNode(txt);  
-	pNumEnlacesPrueba.appendChild(textNode);
+	pNumEnlacesPrueba.innerHTML=txt;
 	body.appendChild(pNumEnlacesPrueba);
 
 	// Numero de enlaces del tercer párrafo
@@ -49,8 +46,7 @@ window.onload = function()
 	txt='El número de enlaces del tercer párrafor es de: '+listaAnchors_TercerP.length;
 	
 	let pNumEnlacesTercerP = document.createElement('p');  
-	textNode=document.createTextNode(txt);  
-	pNumEnlacesTercerP.appendChild(textNode);
+	pNumEnlacesTercerP.innerHTML=txt;
 	body.appendChild(pNumEnlacesTercerP);
 }
 </script>
