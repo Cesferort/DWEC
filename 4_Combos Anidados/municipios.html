@@ -7,30 +7,12 @@
 
 <body onload="startSelectProvincias()">
 	<form id="form_provincias">
-        <select name="select_provincias" onchange="update_provincia()"></select>
-		<select name="municipio" onchange="muestraDatos()">    
-			<option value="-">Seleccione Municipio
+        <select name="select_provincias" onchange="change_provincia()"></select>
+		<select name="select_municipios" onchange="change_municipio()">    
+			<option>Seleccione Municipio
 		</select>
-		
-		<p id="resultado"></p>
+		<p id="output"></p>
     </form>
-	<!-- <form name="form_provincias">
-        <select name="provincia" onchange="cambia_provincia()"> 
-			<option value="0" selected>Seleccione Provincia
-			<option value="1">Araba 
-			<option value="2">Bizkaia 
-			<option value="3">Gipuzkoa 
-			<option value="4">Nafarroa 
-			<option value="5">Lapurdi 
-			<option value="6">Zuberoa
-			<option value="7">Nafarroa Beherea
-		</select>
-		
-		<select name="municipio" onchange="muestraDatos()"> 
-		<option value="-">Seleccione Municipio
-		</select>
-			<p id="mensaje"></p>
-    </form> -->
 </body>
 <script src="municipios_app.js" type="text/javascript"></script>
 </html>

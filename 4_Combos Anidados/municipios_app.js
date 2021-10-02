@@ -1,4 +1,11 @@
 // Datos Municipios
+let municipios_1 = new Array("Seleccione Municipio", "Vitoria-Gasteiz", "Amurrio", "El Ciego", "La Guardia");
+let municipios_2 = new Array("Seleccione Municipio", "Bilbao", "Barakaldo", "Durango", "Elorrio", "Muzkiz");
+let municipios_3 = new Array("Seleccione Municipio", "Donostia-San Sebastián", "Arrasate-Mondragón", "Eibar");
+let municipios_4 = new Array("Seleccione Municipio", "Iruña", "Burlada", "Estella-Lizarra", "Tafalla");
+let municipios_5 = new Array("Seleccione Municipio", "Baiona", "Bastida", "Hendaya", "Miarritze");
+let municipios_6 = new Array("Seleccione Municipio", "Maule", "Barkoxe", "Sohüta");
+let municipios_7 = new Array("Seleccione Municipio", "Baigorri", "Garazi", "Oztibarre");
 let todosMunicipios = 
 [
     [],
@@ -10,89 +17,94 @@ let todosMunicipios =
     municipios_6,
     municipios_7,
 ];
-let municipios_1 = new Array("Seleccione Municipio", "Vitoria-Gasteiz", "Amurrio", "El Ciego", "La Guardia");
-let municipios_2 = new Array("Seleccione Municipio", "Bilbao", "Barakaldo", "Durango", "Elorrio", "Muzkiz");
-let municipios_3 = new Array("Seleccione Municipio", "Donostia-San Sebastián", "Arrasate-Mondragón", "Eibar");
-let municipios_4 = new Array("Seleccione Municipio", "Iruña", "Burlada", "Estella-Lizarra", "Tafalla");
-let municipios_5 = new Array("Seleccione Municipio", "Baiona", "Bastida", "Hendaya", "Miarritze");
-let municipios_6 = new Array("Seleccione Municipio", "Maule", "Barkoxe", "Sohüta");
-let municipios_7 = new Array("Seleccione Municipio", "Baigorri", "Garazi", "Oztibarre");
-
 
 // Datos provincias
 let provincias = new Array("Araba", "Bizkaia", "Gipuzkoa", "Nafarroa", "Lapurdi", "Zuberoa", "Nafarroa Beherea")
 function startSelectProvincias()
 {
-    let eleFormProvincias=document.getElementById('form_provincias');
-    let eleSelectProvincias=eleFormProvincias.select_provincias;
+    let eleForm_Provincias=document.getElementById('form_provincias');
+    let eleSelect_Provincias=eleForm_Provincias.select_provincias;
 
-    let eleOptionProvincia=document.createElement('option');
-    eleOptionProvincia.innerHTML='Seleccione Provincia';
-    eleOptionProvincia.value='-';
-
-    eleSelectProvincias.appendChild(eleOptionProvincia);
+    let eleOption_Provincia=document.createElement('option');
+    eleOption_Provincia.innerHTML='Seleccione Provincia';
+    // eleOption_Provincia.value='-';
+    
+    eleSelect_Provincias.appendChild(eleOption_Provincia);
 
     for(let i=0;i<provincias.length;i++)
     {
-        let eleOptionProvincia=document.createElement('option');
-        eleOptionProvincia.innerHTML=provincias[i];
-        eleOptionProvincia.value=i;
+        let eleOption_Provincia=document.createElement('option');
+        eleOption_Provincia.innerHTML=provincias[i];
+        // eleOption_Provincia.value=i;
 
-        eleSelectProvincias.appendChild(eleOptionProvincia);
+        eleSelect_Provincias.appendChild(eleOption_Provincia);
     }
 }
 
-
-
-function update_provincia()
+function change_provincia()
 {
+    // Limpiar campo de texto del resultado
+    document.getElementById("output").innerHTML="";
 
-}
+    // Encontrar selects de Provincias y Municipios
+    let eleSelect_Provincias=document.getElementById("form_provincias").select_provincias;
+    let eleSelect_Municipios=document.getElementById("form_provincias").select_municipios;
 
-function cambia_provincia() 
-{
-    document.getElementById("mensaje").innerHTML = "";
-
-    //tomo el valor del select del pais elegido 
-    let provincia=document.form_provincias.provincia[document.form_provincias.provincia.selectedIndex].value;
-
-    //miro a ver si el pais está definido 
-    if (provincia != 0) 
+    //Indice de la provincia seleccionada
+    let indexSelectedProvincia=eleSelect_Provincias.selectedIndex;
+    
+    // Comprobamos que no ha sido elegida la opción por defecto
+    if(indexSelectedProvincia!=0)
     {
-        //si estaba definido, entonces coloco las opciones de la provincia correspondiente. 
-        //selecciono el array de muncipio adecuado 
-        mis_municipios = todosMunicipios[provincia]
-        //calculo el numero de municipios 
-        num_municipios = mis_municipios.length;
-        //marco el número de provincias en el select 
-        document.form_provincias.municipio.length = num_municipios;
-        //para cada provincia del array, la introduzco en el select 
-        for (i = 0; i < num_municipios; i++) 
+        let listaMunicipios=todosMunicipios[indexSelectedProvincia];
+        
+        // Limpiar select Municipios y rellenarlo con los municipios asociados a la 
+        // provincia elegida
+        eleSelect_Municipios.length=0; 
+        for(let contMunicipio=0;contMunicipio<listaMunicipios.length;contMunicipio++)
         {
-            document.form_provincias.municipio.options[i].value = mis_municipios[i]
-            document.form_provincias.municipio.options[i].text = mis_municipios[i]
+            municipio=listaMunicipios[contMunicipio];
+            let eleOption_Municipio=document.createElement('option');
+            if(contMunicipio==0)        // Opción default
+            {
+                eleOption_Municipio.innerHTML="Seleccione Municipio";
+                eleOption_Municipio.selected=true;
+                eleSelect_Municipios.appendChild(eleOption_Municipio);
+            }
+            else
+            {
+                eleOption_Municipio.innerHTML=municipio;            
+                eleSelect_Municipios.appendChild(eleOption_Municipio);
+            }
         }
-    } 
-    else 
-    {
-        //si no había provincia seleccionada, elimino las provincias del select 
-        document.form_provincias.municipio.length = 1; 
-        //coloco un guión en la única opción que he dejado 
-        document.form_provincias.municipio.options[0].value = "-";
-        document.form_provincias.municipio.options[0].text = "Seleccione Municipio";
-        //document.getElementById("mensaje").innerHTML = "";
     }
-    //marco como seleccionada la opción primera de provincia 
-    document.form_provincias.municipio.options[0].selected = true;
+    else
+    {
+        // Reset select municipios
+        eleSelect_Municipios.length=0; 
+
+        let eleOption_Municipio=document.createElement('option');
+        eleOption_Municipio.innerHTML="Seleccione Municipio";
+        eleOption_Municipio.selected=true;
+        eleSelect_Municipios.appendChild(eleOption_Municipio);
+    }
 }
 
-function muestraDatos() 
+function change_municipio()
 {
-    let provincia = document.form_provincias.provincia.value - 1;
-    let municipio = document.form_provincias.municipio.value;
+    // Encontrar párrafo para el resultado, select de Provincias y select de Municipios
+    let eleP_Output=document.getElementById("output");
+    let eleSelect_Provincias=document.getElementById("form_provincias").select_provincias;
+    let eleSelect_Municipios=document.getElementById("form_provincias").select_municipios;
 
-    if (municipio != "Seleccione Municipio") 
-        document.getElementById("mensaje").innerHTML = "<p>Ha seleccionado <b>" + municipio + "</b> en <b>" + provincias[provincia] + "</b>";
-    else 
-        document.getElementById("mensaje").innerHTML = "";
+    // Comprobamos que no se ha elegido la opción por defecto
+    let indexSelectedProvincia=eleSelect_Municipios.selectedIndex;
+    if(indexSelectedProvincia!=0)
+    {
+        let municipio=eleSelect_Municipios[indexSelectedProvincia].text;
+        let provincia=eleSelect_Provincias[eleSelect_Provincias.selectedIndex].text;
+        eleP_Output.innerHTML="Ha seleccionado <strong>"+municipio+"</strong> en <strong>"+provincia+"</strong>";
+    }
+    else
+        eleP_Output.innerHTML="";
 }
