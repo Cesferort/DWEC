@@ -100,9 +100,8 @@ function change_provincia()
 
 function change_municipio()
 {
-    console.log("hola");
     // Encontrar párrafo para el resultado, select de Provincias y select de Municipios
-    let eleP_Output=document.getElementById("output");
+    let eleP_Output=document.createElement("p");
 
     // Encontrar selects de Provincias y Municipios
     let eleSelect_Provincias=document.getElementById('provincias');
@@ -118,4 +117,6 @@ function change_municipio()
     }
     else
         eleP_Output.innerHTML="";
+        
+    document.body.appendChild(eleP_Output);
 }
