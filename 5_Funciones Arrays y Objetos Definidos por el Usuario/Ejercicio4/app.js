@@ -1,7 +1,7 @@
 let listaNumeros=[];
 for(let cont=0;cont<2;)
 {
-    let n=prompt("Introduce una palabra. Llevas introducidas "+(cont+1));
+    let n=prompt("Introduce un número. Llevas introducidos "+(cont+1));
     if(n!=null)
     {
         n=n.trim();
