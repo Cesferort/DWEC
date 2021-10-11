@@ -2,19 +2,18 @@ let nuevaVentana;
 
 function ejercicio2()
 {
-    let cont=0;
+    let palabrasValidas=0;
     let listaPalabras=[];
-    do
+    for(let cont=0;cont<5 || palabrasValidas<1;cont++)
     {
-        let input=prompt("Introduce una palabra.\nPalabra número "+(cont+1));
+        let input=prompt("Introduce una palabra. Llevas introducidas "+palabrasValidas+" palabras válidas.\nPalabra número "+(cont+1));
         // Palabra válida
-        if(input!="")
+        if(input!=null && input!='')
         {
-            listaPalabras[cont]=input;
-            cont++;
+            listaPalabras[palabrasValidas]=input;
+            palabrasValidas++;
         }
     }
-    while(cont<5);
 
     // Resultados de interés
     let primeraPalabra=listaPalabras[0];
@@ -29,9 +28,9 @@ function ejercicio2()
     let eleP_UltimaPalabra=document.createElement('p');
     eleP_UltimaPalabra.innerHTML="La última palabra ingresada por el usuario: "+ultimaPalabra;
     let eleP_NumPalabras=document.createElement('p');
-    eleP_NumPalabras.innerHTML="La primera palabra ingresada por el usuario: "+numPalabras;
+    eleP_NumPalabras.innerHTML="Número de palabras presentes en el array: "+(numPalabras+1);
     let eleP_PalabrasSorted=document.createElement('p');
-    eleP_PalabrasSorted.innerHTML="La primera palabra ingresada por el usuario: "+palabrasSorted;
+    eleP_PalabrasSorted.innerHTML="Todas las palabras ordenadas alfabéticamente: "+palabrasSorted;
 
     // Añadir elementos a la ventana emergente para mostrar los resultados
     nuevaVentana.document.body.appendChild(eleP_PrimeraPalabra);
