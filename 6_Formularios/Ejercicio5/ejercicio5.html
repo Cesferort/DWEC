@@ -4,9 +4,23 @@
 <title>Ejercicio 5</title>
 </head>
 <body>
-	<script>
-		
-	</script>
+	<h1>VALIDACION DE DATOS</h1>
+	<form action="#">
+		<label for="dniUser">DNI:</label>
+		<input type="text" name="dniUser" id="dniUser">
+		<br>
+		<label for="emailUser">Email:</label>
+		<input type="text" name="emailUser" id="emailUser">
+		<br>
+		<label for="codPostal">Codigo postal:</label>
+		<input type="text" name="codPostal" id="codPostal">
+		<br>
+		<label for="fecha">Fecha(dd/mm/aaaa):</label>
+		<input type="text" name="fecha" id="fecha">
+		<br>
+		<input type="button" value="Enviar" onclick="enviar()">
+		<input type="button" value="Limpiar" onclick="limpiar()">
+	</form>
 </body>
 <script src="app.js" type="text/javascript"></script>
 </html>

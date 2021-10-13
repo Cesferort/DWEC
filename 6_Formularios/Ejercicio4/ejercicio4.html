@@ -3,10 +3,86 @@
 <head>
 <title>Ejercicio 4</title>
 </head>
+<style>
+#contenedor
+{
+	display:grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 1fr;
+}
+#formulario
+{
+	grid-row: 1;
+	grid-column: 1;
+}
+#datos
+{
+	grid-row: 1;
+	grid-column: 2;
+	background-color: grey;
+}
+#datos h2{color:blue;}
+</style>
 <body>
-	<script>
-		
-	</script>
+	<div id="contenedor">
+		<div id="formulario">
+			<h1>FORMULARIO</h1>
+			<form action="#" enctype="multipart/form-data">
+				<label for="nomUser">Nombre:</label>
+				<input type="text" name="nomUser" id="nomUser" size="50">
+				<br>
+				<label for="dniUser">DNI:</label>
+				<input type="text" name="dniUser" id="dniUser" size="8" maxlength="8">
+				<label for="letraDniUser">Letra:</label>
+				<input type="text" name="letraDniUser" id="letraDniUser" size="1" maxlength="1">
+				<br>
+				<label for="passUser">Clave:</label>
+				<input type="password" name="passUser" id="passUser">
+				<br>
+				<label for="opinion">Opinión:</label>
+				<br>
+				<textarea name="opinion" id="opinion" cols="50" rows="10" placeholder="Muy buena"></textarea>
+				<br>
+				<label for="maxOpinion">Número máximo de carácteres:</label>
+				<input type="text" name="maxOpinion" id="maxOpinion" size="4">
+				<br>
+				<label for="chkMayorEdad">Mayor de edad:</label>
+				<input type="checkbox" name="chkMayorEdad" id="chkMayorEdad">
+				<br>
+				<label for="sexoUser">Sexo:</label>
+				Masculino<input type="radio" name="sexoUser" value="M">
+				Femenino<input type="radio" name="sexoUser" value="F">
+				<br>
+				<label for="sueldoUser">Sueldo anual:</label>
+				menos de 10000€<input type="radio" name="sueldoUser" value="1">
+				de 10000€ a 20000€<input type="radio" name="sueldoUser" value="2">
+				más de 20000€<input type="radio" name="sueldoUser" value="3">
+				<br>
+				<label for="fichero">Fichero:</label>
+				<input type="file" name="fichero" id="fichero">
+				<br>
+				<label for="selectProvincias">Provincia:</label>
+				<select name="selectProvincias" id="selectProvincias">
+					<option value="0">Elegir provincia</option>
+					<option value="1">Alava</option>
+					<option value="2">Bizkaia</option>
+					<option value="3">Gipuzkoa</option>
+				</select>
+				<label for="selectHobbies">Provincia:</label>
+				<select name="selectHobbies" id="selectHobbies" multiple>
+					<option value="0">Chat</option>
+					<option value="1">Juegos</option>
+					<option value="2">Arte</option>
+				</select>
+				<br><br>
+				<input type="button" value="Enviar" onclick="enviar()">
+				<input type="button" value="Limpiar" onclick="limpiar()">
+			</form>
+		</div>
+		<div id="datos">
+			<h2>Datos del formulario</h2>
+		</div>
+	</div>
 </body>
 <script src="app.js" type="text/javascript"></script>
 </html>
