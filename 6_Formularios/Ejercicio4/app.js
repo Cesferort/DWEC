@@ -1,10 +1,22 @@
 const letras = new Array('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'); 
+const sueldos =
+[
+    "menos de 10000€",
+    "de 10000€ a 20000€",
+    "más de 20000€"
+];
 const provincias = 
 [
     "Elegir provincia",
     "Alava",
     "Bizkaia",
     "Gipuzkoa"
+];
+const hobbies=
+[
+    "Chat",
+    "Juegos",
+    "Arte"
 ];
 
 let eleDiv_datos;
@@ -15,10 +27,11 @@ let eleInputPassword_passUser;
 let eleTextArea_opinion;
 let eleInputTxt_maxOpinion;
 let eleCheckbox_mayorEdad;
-let eleSelect_provincias;
 let eleListaRadio_sexoUser=[];
 let eleListaRadio_sueldoUser=[];
 let eleFile_fichero;
+let eleSelect_provincias;
+let eleSelect_hobbies;
 
 window.onload
 {
@@ -34,7 +47,8 @@ window.onload
     eleListaRadio_sexoUser=document.getElementsByName("sexoUser");
     eleListaRadio_sueldoUser=document.getElementsByName("sueldoUser");
     eleFile_fichero=document.getElementById("fichero");
-
+    eleSelect_hobbies=document.getElementById("hobbies");
+    
     eventos();
 }
 
@@ -133,23 +147,31 @@ function enviar()
 function dibujarFormDatos()
 {
     limpiar();
+    // Título
     let eleTitulo=document.createElement("h2");
     eleTitulo.innerHTML="Datos del formulario";
+    // Nombre
     let eleNombre=document.createElement("p");
     eleNombre.innerHTML="<strong>Nombre: </strong>"+eleInputTxt_nomUser.value;
+    // DNI
     let eleDni=document.createElement("p");
     eleDni.innerHTML="<strong>DNI: </strong>"+eleInputTxt_dniUser.value+eleInputTxt_letraDniUser.value;
+    // Clave
     let eleClave=document.createElement("p");
     eleClave.innerHTML="<strong>Clave: </strong>"+eleInputPassword_passUser.value;
+    // Opinión
     let eleOpinion=document.createElement("p");
     eleOpinion.innerHTML="<strong>Opinion: </strong>"+eleTextArea_opinion.value;
+    // Longitud máxima de la opinión
     let eleMaxOpinion=document.createElement("p");
     eleMaxOpinion.innerHTML="<strong>Longitud de la opinion: </strong>"+eleInputTxt_maxOpinion.value;
+    // Mayor de edad
     let eleMayorEdad=document.createElement("p");
     if(eleCheckbox_mayorEdad.checked==true)
         eleMayorEdad.innerHTML="<strong>SI</strong> es mayor de edad";
     else
         eleMayorEdad.innerHTML="<strong>NO</strong> es mayor de edad";
+    // Radio
     let eleSexo=document.createElement("p");
     let sexo="";
     for(let i=0;i<eleListaRadio_sexoUser.length;i++)
@@ -159,24 +181,46 @@ function dibujarFormDatos()
             sexo=eleRadio_sexoUser.value;
     }
     eleSexo.innerHTML="<strong>Sexo: </strong>"+sexo;
-    // sueldo devuelve undefined
+    // Sueldo
     let eleSueldo=document.createElement("p");
     let sueldo="";
     for(let i=0;i<eleListaRadio_sueldoUser.length;i++)
     {
         let eleRadio_sueldoUser=eleListaRadio_sueldoUser[i];
         if(eleRadio_sueldoUser.checked==true)
-            sueldo=eleListaRadio_sueldoUser.value;
+            sueldo=sueldos[eleRadio_sueldoUser.value];
     }
     eleSueldo.innerHTML="<strong>Sueldo: </strong>"+sueldo;
+    // Fichero
     let eleFichero=document.createElement("p");
     eleFichero.innerHTML="<strong>Fichero: </strong>"+eleFile_fichero.value;
+    // Provincia
     let eleProvincia=document.createElement("p");
     eleProvincia.innerHTML="<strong>Provincia: </strong>"+provincias[eleSelect_provincias[eleSelect_provincias.selectedIndex].value];
-    // sin programar. pueden existir múltiples selecciones de provincias
+    // Hobbies
     let eleHobbies=document.createElement("p");
-    eleHobbies.innerHTML="<strong>Hobbies: </strong>";  
+    let listaHobbieElegidos=[];
+    let contHobbie=0;
+    let listaOptions=eleSelect_hobbies.getElementsByTagName('option');
+    for(let i=0;i<listaOptions.length;i++)
+    {
+        let eleOption=listaOptions[i];
+        if(eleOption.selected==true)
+            listaHobbieElegidos[contHobbie++]=eleOption.value;
+    }
+    let txtHobbies="";
+    for(let i=0;i<listaHobbieElegidos.length;i++)
+    {
+        if(i==listaHobbieElegidos.length-3)
+            txtHobbies+=hobbies[listaHobbieElegidos[i]]+", ";
+        else if(i==listaHobbieElegidos.length-2)
+            txtHobbies+=hobbies[listaHobbieElegidos[i]]+" y ";
+        else
+            txtHobbies+=hobbies[listaHobbieElegidos[i]];
+    }
+    eleHobbies.innerHTML="<strong>Hobbies: </strong>"+txtHobbies;  
 
+    // Añadir al contenedor todos los elementos creados y dibujarlo
     eleDiv_datos.appendChild(eleTitulo);
     eleDiv_datos.appendChild(eleNombre);
     eleDiv_datos.appendChild(eleDni);
@@ -190,7 +234,8 @@ function dibujarFormDatos()
     if(eleFile_fichero.value!="")
         eleDiv_datos.appendChild(eleFichero);
     eleDiv_datos.appendChild(eleProvincia);
-    eleDiv_datos.appendChild(eleHobbies); //sino hay hobbies no deberíamos añadirlo. sin programar
+    if(txtHobbies!="")
+        eleDiv_datos.appendChild(eleHobbies); 
 
     eleDiv_datos.style.visibility="visible";
 }
