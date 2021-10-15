@@ -1,4 +1,6 @@
 const letras = new Array('T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'); 
+const mes_maxDias=[31,[28,29],31,30,31,30,31,31,30,31,30,31];
+
 let eleInputText_dniUser;
 let eleInputText_emailUser;
 let eleInputText_codPostal;
@@ -118,8 +120,24 @@ function validarFecha()
             let mes=parseInt(fechaSeccionada[1])-1;
             let dia=parseInt(fechaSeccionada[0]);
 
-            eleInputText_fecha.value=dia+"/"+(mes+1)+"/"+anio;
-            esValido=true;
+            let maxDias=31;
+            if(mes!=1)
+                maxDias=mes_maxDias[mes];
+            else
+            {
+                if((anio%100!=0 || anio%400==0) && anio%4==0)
+                    maxDias=mes_maxDias[mes][1];
+                else
+                    maxDias=mes_maxDias[mes][0];
+            }
+
+            if(anio>0&&mes>=0&&mes<=11&&dia>0&&dia<=maxDias)
+            {
+                eleInputText_fecha.value=dia+"/"+(mes+1)+"/"+anio;
+                esValido=true;
+            }
+            else
+                err="\nEl día introducido es imposible.";
         }
     }
 
