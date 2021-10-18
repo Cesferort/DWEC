@@ -21,8 +21,39 @@ function muestraInformacion(mensaje) {
 window.onload=function(){
 	document.onmousemove=informacion;
 	document.onkeypress=informacion;
-	
 }
+
+/*Inicio de mi código*/
+function informacion(eventSource)
+{
+	let mensaje=[];
+	let tipoEvento=eventSource.type;
+	if(tipoEvento=="mousemove")
+	{
+		let pageX=eventSource.pageX;
+		let pageY=eventSource.pageY;
+		let clientX=eventSource.clientX;
+		let clientY=eventSource.clientY;
+		
+		mensaje[0]="Ratón";
+		mensaje[1]="Navegador ["+pageX+", "+pageY+"]<br>Página ["+clientX+", "+clientY+"]";
+
+		document.body.style.backgroundColor="white";
+	}
+	else if(tipoEvento=="keypress")
+	{
+		let codCaracter=eventSource.keyCode;
+		let caracter=String.fromCharCode(codCaracter);
+
+		mensaje[0]="Teclado";
+		mensaje[1]="Carácter ["+caracter+"]<br>Código ["+codCaracter+"]";
+	
+		document.body.style.backgroundColor="#CCE6FF";
+	}
+	
+	muestraInformacion(mensaje);
+}
+/*Fin de mi código*/
 </script>
 </head>
 
