@@ -40,6 +40,39 @@ window.onload=function(){
 	document.onclick = informacion;
 }
 
+/*Inicio de mi código*/
+function informacion(eventSource)
+{
+	let mensaje=[];
+	let pageX=eventSource.pageX;
+	let pageY=eventSource.pageY;
+	let clientX=eventSource.clientX;
+	let clientY=eventSource.clientY;
+	let seccion="Desconocida";
+
+	let maxX=tamanoVentanaNavegador()[0];
+	let maxY=tamanoVentanaNavegador()[1];
+	
+	if(clientX<maxX/2)
+	{
+		if(clientY<maxY/2)
+			seccion="Izquierda Arriba";
+		else 
+			seccion="Izquierda Abajo";
+	}
+	else 
+	{
+		if(clientY<maxY/2)
+			seccion="Derecha Arriba";
+		else 
+			seccion="Derecha Abajo";
+	}
+
+	mensaje[0]="Ratón";
+	mensaje[1]="Navegador ["+pageX+", "+pageY+"]<br>Página ["+clientX+", "+clientY+"]<br>Zona ["+seccion+"]";
+	muestraInformacion(mensaje);
+}
+/*Fin de mi código*/
 
 </script>
 </head>
