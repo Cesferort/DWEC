@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+
+<!--
+
+se comprueba si el usuario ha escrito correctamente una matrícula de automóvil que debe seguir el patrón código del
+país (1 o 2 letras), un espacio en blanco, numeración (4 dígitos), un espacio en blanco y letras (3 letras, empezando
+en BBB y acabando en ZZZ, sin las vocales
+
+
+-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Validación con expresión regular</title>
+
+    <script type="text/javascript">
+        function literal() {
+            var m = document.getElementById("matricula").value;
+            var expreg = /^[A-Z]{1,2}\s\d{4}\s([B-D]|[F-H]|[J-N]|[P-T]|[V-Z]){3}$/;
+
+            if (expreg.test(m))
+                alert("La matrícula es correcta");
+            else
+                alert("La matrícula NO es correcta");
+        }
+
+
+        function objeto() {
+            var m = document.getElementById("matricula").value;
+            var expreg = new RegExp("^[A-Z]{1,2}\\s\\d{4}\\s([B-D]|[F-H]|[J-N]|[P-T]|[V-Z]){3}$");
+
+            if (expreg.test(m))
+                alert("La matrícula es correcta");
+            else
+                alert("La matrícula NO es correcta");
+        }
+    </script>
+</head>
+
+<body>
+    <form id="miForm" action="" method="get">
+        <p>
+            Código del país (1 o 2 letras mayúsculas), un espacio en blanco, numeración (4 dígitos), un espacio en blanco y letras (3 letras, empezando en BBB y acabando en ZZZ, sin las vocales
+        </p>
+        <p>
+            Matrícula: <input type="text" id="matricula" />
+            <br />
+            <input type="button" value="Literal" onclick="literal()" />
+            <input type="button" value="Objeto" onclick="objeto()" />
+        </p>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+
+<!--
+
+se comprueba si el usuario ha escrito correctamente una matrícula de automóvil que debe seguir el patrón código del
+país (1 o 2 letras), un espacio en blanco, numeración (4 dígitos), un espacio en blanco y letras (3 letras, empezando
+en BBB y acabando en ZZZ, sin las vocales
+
+
+-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Validación con expresión regular</title>
+
+    <script type="text/javascript">
+        // Fechas
+        var date = /^\d{2}\/\d{2}\/\d{2,4}$/;
+        console.log("\d{2}\/\d{2}\/\d{2,4}$");
+        console.log("05/05/1982"+date.test("05/05/1982"));
+        console.log("05/05/54182"+date.test("05/05/54182"));
+
+        // Cadenas
+        var exp = /[a-zA-Z]\d*/;
+        console.log("[a-zA-Z]\d");
+        console.log("A"+exp.test("A"));
+        console.log("B0"+exp.test("B0"));
+        console.log("c01"+exp.test("c01"));
+        console.log("abc01234"+exp.test("abc01234"));
+        console.log("01234"+exp.test("01234"));
+
+        // Operador +
+        var exp = /[a-zA-Z]\d+/;
+        console.log("[a-zA-Z]\d+");
+        console.log("A"+exp.test("A")); // false
+        console.log("B0"+exp.test("B0")); // true
+        console.log("c01"+exp.test("c01")); // true
+        console.log("abc01234"+exp.test("abc01234")); // true
+        console.log("01234"+exp.test("01234")); // false
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

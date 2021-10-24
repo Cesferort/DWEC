@@ -1,0 +1,30 @@
+<!-- Ejemplo: Validar teléfono-->
+<HTML>
+
+<head>
+    <TITLE>Expresiones regulares telefono</TITLE>
+</HEAD>
+
+<BODY>
+    <SCRIPT LANGUAGE="JavaScript">
+        function ValidaCampos(valor) {
+            //comprueba campo teléfono de formulario
+            //usa el metodo test de expresion regular
+
+            if (/^(\+34|0034|34)?[6|7|9][0-9]{8}$/.test(valor)) {
+                alert("El número telefónico es correcto.");
+                return (true);
+            } else {
+                alert('El número de teléfono ingresado no es válido.');
+                return false; //no submit
+            }
+        }
+    </SCRIPT>
+    <FORM>
+        <form name="form" action="enviar.cgi" onSubmit="return ValidaCampos(this)">
+            <input type="text" name="tel" style="font-family:verdana; font-size:12px;">
+            <input type="button" value="Validar Teléfono" style="font-family:verdana; font-size:12px;" onClick="ValidaCampos(this.form.tel.value);">
+        </FORM>
+</BODY>
+
+</HTML>

@@ -1,0 +1,32 @@
+<!-- Ejemplo: Validar teléfono-->
+<HTML>
+
+<head>
+    <TITLE>Expresiones regulares telefono</TITLE>
+</HEAD>
+
+<BODY>
+    <SCRIPT LANGUAGE="JavaScript">
+        function validaFecha(valor) {
+            //comprueba campo teléfono de formulario
+            //usa el metodo test de expresion regular
+
+            if (/^\d{2}\/\d{2}\/\d{2,4}$/.test(valor)) {
+                alert("La fecha es correcta.");
+                return (true);
+            } else {
+                alert('La fecha es incorrecta.');
+                return false; //no submit
+            }
+        }
+    </SCRIPT>
+    <FORM>
+        <form name="form" action="enviar.cgi" onSubmit="return ValidaCampos(this)">
+            <p>
+                Fecha <input type="text" name="fecha" style="font-family:verdana; font-size:12px;">
+                <input type="button" value="Validar Fecha" style="font-family:verdana; font-size:12px;" onClick="validaFecha(this.form.fecha.value);">
+            </p>
+        </FORM>
+</BODY>
+
+</HTML>
