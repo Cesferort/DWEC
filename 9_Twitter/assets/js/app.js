@@ -12,31 +12,38 @@ window.onload
     eleDiv_listaTweets=document.getElementById('lista-tweets');
 
     getTweetsFromLocalStorage();
+    refresh();
     eventos();
 }
 
 function eventos()
 {
-    eleForm_formulario.addEventListener('submit', addTweet);
+    eleForm_formulario.addEventListener('submit', newTweet);
     eleDiv_listaTweets.addEventListener('click', deleteTweet);
 }
 
-function deleteTweet(eventSource) 
-{
-    if(eventSource.target.className == 'borrar-tweet') 
-    {
-        eventSource.target.parentElement.remove();
-        localStorage.setItem('tweets', JSON.stringify(tweets));
-    } 
-}
-
-function addTweet()
+function newTweet()
 {
     let txtNewTweet=eleTextArea_tweet.value;
     eleTextArea_tweet.value="";
     if(txtNewTweet == '')
         return false;
 
+    addTweet(txtNewTweet, true);
+}
+
+function refresh()
+{
+    let maxLength=tweets.length;
+    for(let i=0; i < maxLength; i++)
+    {
+        let txtNewTweet=tweets[i];
+        addTweet(txtNewTweet, false);
+    }
+}
+
+function addTweet(txtNewTweet, check_addToLocalStorage)
+{
     let eleLi_newTweet=document.createElement('li');
     eleLi_newTweet.innerHTML=txtNewTweet;
 
@@ -47,13 +54,33 @@ function addTweet()
     eleLi_newTweet.appendChild(eleAnchor_borrar);
     eleDiv_listaTweets.appendChild(eleLi_newTweet);
 
-    addTweetToLocalStorage(txtNewTweet);
+    if(check_addToLocalStorage)
+        addTweetToLocalStorage(txtNewTweet);
 }
 
 function addTweetToLocalStorage(txtNewTweet)
 {
-    tweets[tweets.lenght]=txtNewTweet;
+    tweets[tweets.length]=txtNewTweet;
     localStorage.setItem('tweets', JSON.stringify(tweets));
+}
+
+function deleteTweet(eventSource) 
+{
+    if(eventSource.target.className == 'borrar-tweet') 
+    {
+        eventSource.target.parentElement.remove();
+        let txtEventSource=eventSource.target.parentElement.innerText;
+        txtEventSource=txtEventSource.substring(0, txtEventSource.length-1);
+        for(let i=0; i < tweets.length; i++)
+        {
+            let tweet=tweets[i];
+            if(txtEventSource == tweet)
+            {
+                tweets.splice(i, 1);
+                localStorage.setItem('tweets', JSON.stringify(tweets));
+            }
+        }
+    } 
 }
 
 function getTweetsFromLocalStorage() 
@@ -61,6 +88,6 @@ function getTweetsFromLocalStorage()
     if(localStorage.getItem('tweets') == null) 
         tweets=[]; 
     else
-        tweets=JSON.parse(localStorage.getItem('tweets') );
+        tweets=JSON.parse(localStorage.getItem('tweets'));
     return tweets;
 }
