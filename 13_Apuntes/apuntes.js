@@ -1,4 +1,3 @@
-// mierda.substring(0, mierda.indexOf('.'));
 /**
  * LOCAL STORAGE
  */
@@ -197,6 +196,8 @@ txt.toString();
 /**
  * COSAS VARIAS
  */    
+// Substr Indexof
+/* mierda.substring(0, mierda.indexOf('.')); */
 // Rand 
 /* let n=Math.floor(Math.random()*100)+1; */
 
