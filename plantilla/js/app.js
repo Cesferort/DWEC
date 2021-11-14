@@ -220,7 +220,7 @@ function validateBirthday()
     let diffDates_seconds=diffDates/1000;   
     let diffDates_hours=diffDates_seconds/(60*60);
     let diffDates_days=diffDates_hours/24;
-    let ageUser=diffDates_days/365;
+    ageUser=Math.trunc(diffDates_days/365);
     
     eleDate_birthday.style.backgroundColor="rgb(127, 255, 127)";
     return true;
